@@ -1,5 +1,5 @@
-import Link from "next/link"
-import Image from "next/image"
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { CheckCircle, Package, Shield, Sparkles, ThumbsUp } from "lucide-react"
@@ -18,8 +18,14 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 import { testimonials } from "@/data/testimonials"
+import { toast } from "sonner"
+import Image from "next/image"
+import Link from "next/link"
 
 export default function LandingPage() {
+  const shopLink = process.env.NEXT_PUBLIC_SHOP_REFERRAL_LINK || "#"
+  // const [isOpen, setIsOpen] = useState(false)
+
   return (
     <div className="flex min-h-screen flex-col bg-black text-white">
       {/* Header */}
@@ -44,7 +50,9 @@ export default function LandingPage() {
               </Link>
             </nav>
             <div className="flex items-center gap-2">
-              <Button variant="default">Shop Now</Button>
+              <Button variant="default" asChild>
+                <Link href={shopLink}>Shop Now</Link>
+              </Button>
             </div>
           </div>
         </div>
@@ -60,8 +68,9 @@ export default function LandingPage() {
                 Specialized chest tape designed for men with gynecomastia. Contour, shape, and feel confident again.
               </p>
               <div className="flex flex-col gap-2 min-[400px]:flex-row">
-                <Button variant="default">Shop Products</Button>
-                <Button variant="outline">Learn More</Button>
+                <Button variant="default" className="h-12 w-full" asChild>
+                  <Link href={shopLink}>Shop Products</Link>
+                </Button>
               </div>
             </div>
             <div className="flex justify-center">
@@ -124,36 +133,36 @@ export default function LandingPage() {
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-foreground">How It Works</h2>
             <p className="text-muted-foreground md:text-xl">Simple, effective, and designed for your comfort.</p>
           </div>
-          <div className="grid gap-8 md:grid-cols-3 mt-12">
-            <Card>
+          <div className="grid gap-8 md:grid-cols-3 mt-12 max-w-4xl mx-auto">
+            <Card className="relative">
               <CardContent className="p-6 space-y-4">
-                <div className="bg-primary text-primary-foreground w-10 h-10 rounded-full flex items-center justify-center font-bold">
+                <div className="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-black border-2 border-white/20 flex items-center justify-center font-bold text-lg shadow-lg">
                   1
                 </div>
-                <h3 className="text-xl font-bold text-foreground">Prepare</h3>
+                <h3 className="text-xl font-bold text-foreground mt-4">Prepare</h3>
                 <p className="text-muted-foreground">
                   Clean and dry your chest area. Each kit comes with preparation wipes to ensure optimal adhesion.
                 </p>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="relative">
               <CardContent className="p-6 space-y-4">
-                <div className="bg-primary text-primary-foreground w-10 h-10 rounded-full flex items-center justify-center font-bold">
+                <div className="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-black border-2 border-white/20 flex items-center justify-center font-bold text-lg shadow-lg">
                   2
                 </div>
-                <h3 className="text-xl font-bold text-foreground">Apply</h3>
+                <h3 className="text-xl font-bold text-foreground mt-4">Apply</h3>
                 <p className="text-muted-foreground">
                   Follow our simple application guide to place the tape for your desired contour effect. The ergonomic
                   design makes application easy.
                 </p>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="relative">
               <CardContent className="p-6 space-y-4">
-                <div className="bg-primary text-primary-foreground w-10 h-10 rounded-full flex items-center justify-center font-bold">
+                <div className="absolute -top-4 -left-4 w-12 h-12 rounded-full bg-black border-2 border-white/20 flex items-center justify-center font-bold text-lg shadow-lg">
                   3
                 </div>
-                <h3 className="text-xl font-bold text-foreground">Confidence</h3>
+                <h3 className="text-xl font-bold text-foreground mt-4">Confidence</h3>
                 <p className="text-muted-foreground">
                   Enjoy up to 12 hours of secure hold and natural-looking results. Remove gently with our specialized
                   removal oil.
@@ -328,7 +337,9 @@ export default function LandingPage() {
             </h2>
             <p className="text-muted-foreground md:text-xl">Join thousands of men who&apos;ve discovered the moob difference.</p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
-              <Button variant="default" size="lg">Shop Now</Button>
+              <Button variant="default" className="h-12 w-full" asChild>
+                <Link href={shopLink}>Shop Now</Link>
+              </Button>
             </div>
           </div>
         </div>
@@ -358,15 +369,75 @@ export default function LandingPage() {
               <h3 className="text-lg font-bold mb-4 text-foreground">Support</h3>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <Link href="#" className="hover:text-foreground transition-colors">
+                  <span onClick={() => toast("Contact coming soon.", { 
+                    description: (
+                      <span>
+                        For now, please send inquiries to{" "}
+                        <Link href="mailto:support@moob-co.com" className="text-black hover:underline">
+                          support@moob-co.com
+                        </Link>
+                      </span>
+                    ), 
+                    action: { 
+                      label: "Close", 
+                      onClick: () => toast.dismiss() 
+                    } 
+                  })} className="hover:text-foreground transition-colors cursor-pointer">
                     Contact Us
-                  </Link>
+                  </span>
+                {/* <Drawer open={isOpen} onOpenChange={setIsOpen}>
+                <DrawerTrigger asChild>
+                  <span className="hover:text-foreground transition-colors cursor-pointer">Contact Us</span>
+                </DrawerTrigger>
+                <DrawerContent className="bg-black border-t border-white/10">
+                  <div className="mx-auto w-full max-w-sm">
+                    <DrawerHeader>
+                      <DrawerTitle>Contact Us</DrawerTitle>
+                      <DrawerDescription>
+                        Send us a message and we&apos;ll get back to you as soon as possible.
+                      </DrawerDescription>
+                    </DrawerHeader>
+                    <div className="p-4 pb-0">
+                      <div className="space-y-4">
+                        <div className="space-y-2">
+                          <label htmlFor="email" className="text-sm font-medium">
+                            Email
+                          </label>
+                          <Input
+                            id="email"
+                            type="email"
+                            placeholder="your@email.com"
+                            className="bg-white/5 border-white/10"
+                          />
+                        </div>
+                        <div className="space-y-2">
+                          <label htmlFor="message" className="text-sm font-medium">
+                            Message
+                          </label>
+                          <Textarea
+                            id="message"
+                            placeholder="How can we help you?"
+                            className="bg-white/5 border-white/10 min-h-[100px]"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <DrawerFooter>
+                      <Button className="w-full">Send Message</Button>
+                      <DrawerClose asChild>
+                        <Button variant="outline" className="w-full">Cancel</Button>
+                      </DrawerClose>
+                    </DrawerFooter>
+                  </div>
+                </DrawerContent>
+              </Drawer> */}
                 </li>
                 <li>
                   <Link href="#" className="hover:text-foreground transition-colors">
                     Shipping
                   </Link>
                 </li>
+
                 <li>
                   <Link href="#" className="hover:text-foreground transition-colors">
                     Returns
@@ -398,3 +469,4 @@ export default function LandingPage() {
     </div>
   )
 }
+
