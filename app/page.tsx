@@ -74,15 +74,15 @@ export default function LandingPage() {
               </div>
             </div>
             <div className="flex justify-center">
-              <div className="relative w-full max-w-md aspect-square">
+              {/* <div className="relative w-full max-w-md aspect-square">
                 <Image
-                  src="/package-image.png"
+                  src="/package-image-tape.png"
                   alt="Confidence Redefined"
                   fill
                   className="object-cover rounded-lg"
                   priority
                 />
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
@@ -114,7 +114,7 @@ export default function LandingPage() {
             <div className="flex justify-center">
               <div className="relative w-full max-w-md aspect-square">
                 <Image
-                  src="/real-solutions.png"
+                  src="/real-solutions-tape.png"
                   alt="Confidence Redefined"
                   fill
                   className="object-cover rounded-lg"
