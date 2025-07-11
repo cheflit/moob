@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "moob - Confidence Redefined",
+  title: "moob Tape - Confidence Redefined",
   description: "Specialized chest tape designed for men with gynecomastia. Contour, shape, and feel confident again.",
 };
 
