@@ -33,7 +33,7 @@ export default function LandingPage() {
         <div className="container mx-auto max-w-5xl px-4">
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center gap-2">
-              <Link href="/" className="text-foreground font-semibold text-2xl tracking-wider logo-text">moob</Link>
+              <Link href="/" className="text-foreground font-semibold text-2xl tracking-wider logo-text">moob Tape</Link>
             </div>
             <nav className="hidden md:flex gap-6">
               <Link href="#how-it-works" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
@@ -74,7 +74,7 @@ export default function LandingPage() {
               </div>
             </div>
             <div className="flex justify-center">
-              {/* <div className="relative w-full max-w-md aspect-square">
+              <div className="relative w-full max-w-md aspect-square">
                 <Image
                   src="/package-image-tape.png"
                   alt="Confidence Redefined"
@@ -82,7 +82,7 @@ export default function LandingPage() {
                   className="object-cover rounded-lg"
                   priority
                 />
-              </div> */}
+              </div>
             </div>
           </div>
         </div>
